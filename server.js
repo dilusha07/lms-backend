@@ -110,3 +110,13 @@ server.put("/book/:id", (req, res) => {
     res.send(books[bookIndex]);
 });
 
+// /book/:id: Delete Delete book
+// /book/1
+server.delete("/book/:id", (req, res) => {
+    const id = req.params.id;
+
+    books = books.filter((book) => book.id !== id);
+    res.send(id);
+    console.log(books)
+})
+
