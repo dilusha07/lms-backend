@@ -94,4 +94,19 @@ server.put("/book/:id/return", (req, res) => {
     res.send(books[bookIndex]);
 });
 
+// /book/:id Put: Edit book
+// title, author
+server.put("/book/:id", (req, res) => {
+    const id = req.params.id;
+    const {title, author} = req.body;
+
+    const bookIndex = books.findIndex((book) => book.id ===id);
+    books[bookIndex] = {
+        ...books[bookIndex],
+        title,
+        author,
+    }
+
+    res.send(books[bookIndex]);
+});
 
