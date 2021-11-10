@@ -78,3 +78,20 @@ server.put("/book/:id/burrow", (req, res) => {
     res.send(books[bookIndex]);
 });
 
+// /book/:id/return: Return book
+// /book/1/return
+server.put("/book/:id/return", (req, res) => {
+    const id = req.params.id;
+
+    const bookIndex = books.findIndex((book) => book.id ===id);
+    books[bookIndex] = {
+        ...books[bookIndex],
+        isAvailable: true,
+        burrowedMemberId: "",
+        burrowedDate: "",
+    };
+
+    res.send(books[bookIndex]);
+});
+
+
