@@ -42,3 +42,18 @@ server.get("/book/:id", (req, res) =>{
     res.send(book);
 });
 
+// /book: Post create book
+// title, author
+server.post("/book", (req, res) =>{
+    const {title, author} = req.body;
+    
+    const book = {
+        id: Math.random().toString(16).slice(2),
+        title,
+        author,
+    };
+    books.push(book);
+    res.send(book);
+    
+});
+
