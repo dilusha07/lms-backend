@@ -13,4 +13,7 @@ router.get("/member/:id", memberController.getMember);
 //Create Member
 router.post("/member", memberController.addMember);
 
+//Update Member Details
+router.put("/member/:id", memberController.editMember);
+
 module.exports = router;

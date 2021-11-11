@@ -51,6 +51,27 @@ exports.addMember = (req, res) =>{
         userType,
     };
     members.push(member);
-    res.send(member);
-    
+    res.send(member);   
 };
+
+//Update Member Details
+exports.editMember = (req, res) =>{
+    const id = req.params.id;
+    const {nic, fname, mname,lname,phone,address,userType} = req.body;
+
+    const memberIndex = members.findIndex((member) => member.id ===id);
+    members[memberIndex] = {
+        ...members[memberIndex],
+        nic,
+        fname,
+        mname,
+        lname,
+        phone,
+        address,
+        userType,
+    }
+
+    res.send(members[memberIndex]);
+};
+
+
