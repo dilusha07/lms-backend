@@ -74,4 +74,10 @@ exports.editMember = (req, res) =>{
     res.send(members[memberIndex]);
 };
 
+exports.deleteMember = (req, res) =>{
+const id = req.params.id;
 
+    members = members.filter((member) => member.id !== id);
+    res.send(id);
+    console.log(members)
+};

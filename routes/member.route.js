@@ -16,4 +16,7 @@ router.post("/member", memberController.addMember);
 //Update Member Details
 router.put("/member/:id", memberController.editMember);
 
+//Delete Member
+router.delete("/member/:id", memberController.deleteMember);
+
 module.exports = router;
