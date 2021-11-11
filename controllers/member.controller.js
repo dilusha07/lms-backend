@@ -12,9 +12,9 @@ let members = [{
 {
     id: "2",
     nic: "200000123V",
-    fame: "Chari",
+    fname: "Chari",
     mname: "Nethu",
-    lame: "Asidni",
+    lname: "Asidni",
     phone: "0712334445",
     address: "Galle Road",
     userType: "School",
@@ -33,4 +33,24 @@ exports.getMember = (req, res) =>{
     const member = members.find((member) => member.id === id);
     console.log(member);
     res.send(member);
+};
+
+// Create Member 
+// nic, fname, mname,lname,phone,address,userType
+exports.addMember = (req, res) =>{
+    const {nic, fname, mname,lname,phone,address,userType} = req.body;
+    
+    const member = {
+        id: Math.random().toString(16).slice(2),
+        nic,
+        fname,
+        mname,
+        lname,
+        phone,
+        address,
+        userType,
+    };
+    members.push(member);
+    res.send(member);
+    
 };

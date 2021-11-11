@@ -10,4 +10,7 @@ router.get('/member', memberController.getMembers);
 // /member/:id
 router.get("/member/:id", memberController.getMember);
 
+//Create Member
+router.post("/member", memberController.addMember);
+
 module.exports = router;
