@@ -25,4 +25,12 @@ let members = [{
 //Get the list of Members
 exports.getMembers = (req, res) =>{
     res.send(members);
-}
+};
+
+// Get a single Member
+exports.getMember = (req, res) =>{
+    const id = req.params.id;
+    const member = members.find((member) => member.id === id);
+    console.log(member);
+    res.send(member);
+};

@@ -6,14 +6,14 @@ server.listen(3006, () =>{
     console.log("Server running on port 3006");
 });
 
+server.use(express.urlencoded({extended: true}));
+server.use(express.json());
+
 // import member routes
 const memberRoutes = require('./routes/member.route');
 
 //create member routes
 server.use(memberRoutes);
-
-server.use(express.urlencoded({extended: true}));
-server.use(express.json());
 
 
 let books = [{
