@@ -2,8 +2,8 @@ const express = require("express");
 
 const server = express();
 
-server.listen(3006, () =>{
-    console.log("Server running on port 3006");
+server.listen(3001, () =>{
+    console.log("Server running on port 3001");
 });
 
 server.use(express.urlencoded({extended: true}));
@@ -125,5 +125,5 @@ server.delete("/book/:id", (req, res) => {
     books = books.filter((book) => book.id !== id);
     res.send(id);
     console.log(books)
-})
+});
 
