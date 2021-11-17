@@ -2,6 +2,9 @@ const express = require("express");
 
 const server = express();
 
+const databaseURL = 
+"mongodb+srv://testUser:dilu@1234s@cluster0.w11ep.mongodb.net/lms?retryWrites=true&w=majority";
+//Replace <password> with the password for the testUser user. Replace myFirstDatabase with the name of the database that connections will use by default. Ensure any option params are URL encoded.
 server.listen(3001, () =>{
     console.log("Server running on port 3001");
 });
