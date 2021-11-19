@@ -161,10 +161,13 @@ server.put("/book/:id", async (req, res) => {
 
 // /book/:id: Delete Delete book
 // /book/1
-server.delete("/book/:id", (req, res) => {
+server.delete("/book/:id", async (req, res) => {
   const id = req.params.id;
 
-  books = books.filter((book) => book.id !== id);
-  res.send(id);
-  console.log(books);
+  // books = books.filter((book) => book.id !== id);
+  // res.send(id);
+  // console.log(books);
+
+  const book = await Book.findByIdAndDelete(id);
+  res.send(book);
 });
