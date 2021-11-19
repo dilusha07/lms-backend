@@ -66,16 +66,20 @@ server.get("/book/:id", (req, res) => {
 
 // /book: Post create book
 // title, author
-server.post("/book", (req, res) => {
+server.post("/book", async (req, res) => {
   const { title, author } = req.body;
 
-  const book = {
-    id: Math.random().toString(16).slice(2),
-    title,
-    author,
-  };
-  books.push(book);
-  res.send(book);
+  // const book = {
+  //   id: Math.random().toString(16).slice(2),
+  //   title,
+  //   author,
+  // };
+  // books.push(book);
+  // res.send(book);
+
+  const book = new Book({ title, author });
+  const response = await book.save();
+  res.send(response);
 });
 
 // /book/:id/burrow book
