@@ -59,10 +59,13 @@ server.get("/book", async (req, res) => {
 
 // /book/1: View book 1
 // /book/:id
-server.get("/book/:id", (req, res) => {
+server.get("/book/:id", async (req, res) => {
   const id = req.params.id;
-  const book = books.find((book) => book.id === id);
-  console.log(book);
+  // const book = books.find((book) => book.id === id);
+  // console.log(book);
+  // res.send(book);
+
+  const book = await Book.findById(id);
   res.send(book);
 });
 
