@@ -116,34 +116,47 @@ server.put("/book/:id/burrow", async (req, res) => {
 
 // /book/:id/return: Return book
 // /book/1/return
-server.put("/book/:id/return", (req, res) => {
+server.put("/book/:id/return", async (req, res) => {
   const id = req.params.id;
 
-  const bookIndex = books.findIndex((book) => book.id === id);
-  books[bookIndex] = {
-    ...books[bookIndex],
+  // const bookIndex = books.findIndex((book) => book.id === id);
+  // books[bookIndex] = {
+  //   ...books[bookIndex],
+  //   isAvailable: true,
+  //   burrowedMemberId: "",
+  //   burrowedDate: "",
+  // };
+
+  // res.send(books[bookIndex]);
+
+  const book = await Book.findByIdAndUpdate(id, {
     isAvailable: true,
     burrowedMemberId: "",
     burrowedDate: "",
-  };
-
-  res.send(books[bookIndex]);
+  });
+  res.send(book);
 });
 
 // /book/:id Put: Edit book
 // title, author
-server.put("/book/:id", (req, res) => {
+server.put("/book/:id", async (req, res) => {
   const id = req.params.id;
   const { title, author } = req.body;
 
-  const bookIndex = books.findIndex((book) => book.id === id);
-  books[bookIndex] = {
-    ...books[bookIndex],
+  // const bookIndex = books.findIndex((book) => book.id === id);
+  // books[bookIndex] = {
+  //   ...books[bookIndex],
+  //   title,
+  //   author,
+  // };
+
+  // res.send(books[bookIndex]);
+
+  const book = await Book.findByIdAndUpdate(id, {
     title,
     author,
-  };
-
-  res.send(books[bookIndex]);
+  });
+  res.send(book);
 });
 
 // /book/:id: Delete Delete book
