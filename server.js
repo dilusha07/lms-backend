@@ -51,7 +51,9 @@ let books = [
 ];
 
 //book: View all books
-server.get("/book", (req, res) => {
+server.get("/book", async (req, res) => {
+  //res.send(books);
+  const books = await Book.find();
   res.send(books);
 });
 
