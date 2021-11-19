@@ -91,20 +91,27 @@ server.post("/book", async (req, res) => {
 // /book/1/burrow
 // burrowedMemberId, burrowedData
 
-server.put("/book/:id/burrow", (req, res) => {
+server.put("/book/:id/burrow", async (req, res) => {
   const id = req.params.id;
   const { burrowedMemberId, burrowedDate } = req.body;
 
-  console.log(id, burrowedMemberId, burrowedDate);
-  const bookIndex = books.findIndex((book) => book.id === id);
-  books[bookIndex] = {
-    ...books[bookIndex],
+  // console.log(id, burrowedMemberId, burrowedDate);
+  // const bookIndex = books.findIndex((book) => book.id === id);
+  // books[bookIndex] = {
+  //   ...books[bookIndex],
+  //   isAvailable: false,
+  //   burrowedMemberId,
+  //   burrowedDate,
+  // };
+
+  // res.send(books[bookIndex]);
+
+  const book = await Book.findByIdAndUpdate(id, {
     isAvailable: false,
     burrowedMemberId,
     burrowedDate,
-  };
-
-  res.send(books[bookIndex]);
+  });
+  res.send(book);
 });
 
 // /book/:id/return: Return book
