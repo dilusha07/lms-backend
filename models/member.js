@@ -23,6 +23,7 @@ const memberSchema = new Schema({
   },
   address: {
     type: String,
+    required: true,
   },
   usertype: {
     type: String,
