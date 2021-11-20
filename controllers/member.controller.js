@@ -75,13 +75,25 @@ exports.addMember = async (req, res) => {
 };
 
 //Update Member Details
-exports.editMember = (req, res) => {
+exports.editMember = async (req, res) => {
   const id = req.params.id;
   const { nic, fname, mname, lname, phone, address, userType } = req.body;
 
-  const memberIndex = members.findIndex((member) => member.id === id);
-  members[memberIndex] = {
-    ...members[memberIndex],
+  // const memberIndex = members.findIndex((member) => member.id === id);
+  // members[memberIndex] = {
+  //   ...members[memberIndex],
+  //   nic,
+  //   fname,
+  //   mname,
+  //   lname,
+  //   phone,
+  //   address,
+  //   userType,
+  // };
+
+  //res.send(members[memberIndex]);
+
+  const member = await Member.findByIdAndUpdate(id, {
     nic,
     fname,
     mname,
@@ -89,9 +101,8 @@ exports.editMember = (req, res) => {
     phone,
     address,
     userType,
-  };
-
-  res.send(members[memberIndex]);
+  });
+  res.send(member);
 };
 
 exports.deleteMember = (req, res) => {
