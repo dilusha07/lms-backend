@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Book = require("./models/book");
+const cors = require("cors");
 
 const server = express();
 
@@ -23,6 +24,7 @@ mongoose
     console.log(err);
   });
 
+server.use(cors());
 server.use(express.urlencoded({ extended: true }));
 server.use(express.json());
 
