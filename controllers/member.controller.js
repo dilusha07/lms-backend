@@ -105,10 +105,13 @@ exports.editMember = async (req, res) => {
   res.send(member);
 };
 
-exports.deleteMember = (req, res) => {
+exports.deleteMember = async (req, res) => {
   const id = req.params.id;
 
-  members = members.filter((member) => member.id !== id);
-  res.send(id);
-  console.log(members);
+  // members = members.filter((member) => member.id !== id);
+  // res.send(id);
+  // console.log(members);
+
+  const member = await Member.findByIdAndDelete(id);
+  res.send(member);
 };
