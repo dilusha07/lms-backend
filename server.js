@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Book = require("./models/book");
-const Member = require("./models/member");
 
 const server = express();
 
@@ -17,7 +16,7 @@ mongoose
   .then((result) => {
     console.log("Connected to DB");
     server.listen(PORT, () => {
-      console.log("Server running on port ${PORT}");
+      console.log(`Server running on port ${PORT}`);
     });
   })
   .catch((err) => {
