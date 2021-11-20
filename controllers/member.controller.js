@@ -25,7 +25,10 @@ let members = [
 ];
 
 //Get the list of Members
-exports.getMembers = (req, res) => {
+exports.getMembers = async (req, res) => {
+  //res.send(members);
+
+  const members = await Member.find();
   res.send(members);
 };
 
