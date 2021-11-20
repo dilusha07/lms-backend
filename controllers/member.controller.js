@@ -33,10 +33,13 @@ exports.getMembers = async (req, res) => {
 };
 
 // Get a single Member
-exports.getMember = (req, res) => {
+exports.getMember = async (req, res) => {
   const id = req.params.id;
-  const member = members.find((member) => member.id === id);
-  console.log(member);
+  // const member = members.find((member) => member.id === id);
+  // console.log(member);
+  // res.send(member);
+
+  const member = await Member.findById(id);
   res.send(member);
 };
 
