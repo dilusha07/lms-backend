@@ -52,12 +52,30 @@ let books = [
     burrowedDate: "",
   },
 ];
+const convertToBook = (book) => {
+  return {
+    id: book._id,
+    title: book.title,
+    author: book.author,
+    isAvailable: book.isAvailable,
+    burrowedMemberId: book.burrowedMemberId,
+    burrowedDate: book.burrowedDate,
+  };
+};
+const sendBook = async (res, id) => {
+  const book = await Book.findById(id);
+  res.send(convertToBook(book));
+};
 
 //book: View all books
 server.get("/book", async (req, res) => {
   //res.send(books);
   const books = await Book.find();
-  res.send(books);
+  res.send(
+    books.map((book) => {
+      return convertToBook(book);
+    })
+  );
 });
 
 // /book/1: View book 1
@@ -68,8 +86,7 @@ server.get("/book/:id", async (req, res) => {
   // console.log(book);
   // res.send(book);
 
-  const book = await Book.findById(id);
-  res.send(book);
+  sendBook(res, id);
 });
 
 // /book: Post create book
@@ -85,9 +102,15 @@ server.post("/book", async (req, res) => {
   // books.push(book);
   // res.send(book);
 
-  const book = new Book({ title, author });
+  const book = new Book({
+    title,
+    author,
+    isAvailable: true,
+    burrowedMemberId: "",
+    burrowedDate: "",
+  });
   const response = await book.save();
-  res.send(response);
+  res.send(convertToBook(response));
 });
 
 // /book/:id/burrow book
@@ -114,7 +137,7 @@ server.put("/book/:id/burrow", async (req, res) => {
     burrowedMemberId,
     burrowedDate,
   });
-  res.send(book);
+  sendBook(res, id);
 });
 
 // /book/:id/return: Return book
@@ -137,7 +160,7 @@ server.put("/book/:id/return", async (req, res) => {
     burrowedMemberId: "",
     burrowedDate: "",
   });
-  res.send(book);
+  sendBook(res, id);
 });
 
 // /book/:id Put: Edit book
@@ -159,7 +182,7 @@ server.put("/book/:id", async (req, res) => {
     title,
     author,
   });
-  res.send(book);
+  sendBook(res, id);
 });
 
 // /book/:id: Delete Delete book
