@@ -4,30 +4,30 @@ const Schema = mongoose.Schema;
 const memberSchema = new Schema({
   nic: {
     type: String,
-    //required: true,
+    required: true,
   },
   fname: {
     type: String,
-    //required: true,
+    required: true,
   },
   mname: {
     type: String,
   },
   lname: {
     type: String,
-    //required: true,
+    required: true,
   },
   phone: {
     type: Number,
-    // required: true,
+    required: true,
   },
   address: {
     type: String,
-    //required: true,
+    required: true,
   },
   userType: {
     type: String,
-    //required: true,
+    required: true,
   },
 });
 
